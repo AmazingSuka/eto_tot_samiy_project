@@ -18,6 +18,8 @@ namespace ShopNetwork
         {
             InitializeComponent();
             adapter = new SqlAdapter();
+            // OrderGrid_FillWithCondition();
+            // ModelGrid_Fill();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -39,13 +41,28 @@ namespace ShopNetwork
         // Добавляет в базу новый заказ
         private void OrderGrid_Add()
         {
-            // adapter.InsertData("TABLE_NAME", "{@arg1,@arg2,@argN}", {ТекстБоксы и Комбобоксы с данными})
+            // adapter.InsertData("order", "{@arg1,@arg2,@arg3,@arg4,@arg5,@arg6}", {ТекстБоксы и Комбобоксы с данными})
         }
 
         private void OrderGrid_Remove()
         {
-            // adapter.RemoveData("TABLE_NAME", {Комбобокс с значением});
+            // adapter.RemoveData("order", {Комбобокс с значением});
         }
 
+        private void ModelGrid_Fill()
+        {
+            adapter.sqlCommand = new SqlCommand("SELECT model, tentType, numberOfSeats, color, basePrice FROM boat", adapter.sqlConnection);
+            // adapter.DataGrid_Fill(adapter.sqlCommand, modelDataGrid, 5);
+        }
+
+        private void ModelGrid_Add()
+        {
+            // adapter.InsertData("boat", "@arg1,@arg2,@arg3,@arg4,@arg5", {Текстбоксы и комбобоксы с данными});
+        }
+
+        private void ModelGrid_Remove()
+        {
+            // adapter.RemoveData("boat", {Комбобокс с значением});
+        }
     }
 }
