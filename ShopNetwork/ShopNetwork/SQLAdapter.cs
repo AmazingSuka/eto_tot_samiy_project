@@ -40,6 +40,55 @@ namespace ShopNetwork
             catch(Exception)
             {
                 ErrorMessage();
+                throw; //Убрать перед показом
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+        }
+
+        // Вставка данных в таблицу в БД
+        internal void InsertData(string table, string arguments, params string[] value)
+        {
+            try
+            {
+                sqlConnection.Open();
+                sqlCommand = new SqlCommand(String.Format("INSERT INTO {0} VALUES ({1})", table, arguments), sqlConnection);
+                string[] arg = arguments.Split(',');
+                for (int i = 0; i < arg.Length; i++)
+                {
+                    sqlCommand.Parameters.Add(new SqlParameter(arg[i], value[i]));
+                }
+                sqlCommand.ExecuteNonQuery();
+                CongratulationMessage();
+            }
+            catch (Exception)
+            {
+                ErrorMessage();
+                throw; // Убрать перед показом
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }            
+        }
+
+        // Удаление данных из таблицы в БД
+        internal void RemoveData(string table, string value)
+        {
+            try
+            {
+                sqlConnection.Open();
+                sqlCommand = new SqlCommand(String.Format("DELETE FROM {0} WHERE ID = @1", table), sqlConnection);
+                sqlCommand.Parameters.Add(new SqlParameter("@1", value));
+                sqlCommand.ExecuteNonQuery();
+                CongratulationMessage();
+            }
+            catch (Exception)
+            {
+                ErrorMessage();
+                throw;
             }
             finally
             {
