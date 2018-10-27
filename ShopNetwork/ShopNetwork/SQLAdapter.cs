@@ -96,15 +96,14 @@ namespace ShopNetwork
             }           
         }
 
-        private void ErrorMessage()
+        // Редактирование данных 
+        internal void EditData(string table)
         {
-            MessageBox.Show("При работе с данными произошла ошибка", "Ошибка данных", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+            sqlCommand = new SqlCommand(String.Format("UPDATE {0} SET ", table), sqlConnection);
         }
 
-        private void CongratulationMessage()
-        {
-            MessageBox.Show("Команда успешно выполена", "Успешное выполнение", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-        }
-        
+        private void ErrorMessage() => MessageBox.Show("При работе с данными произошла ошибка", "Ошибка данных", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+
+        private void CongratulationMessage() => MessageBox.Show("Команда успешно выполена", "Успешное выполнение", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
     }
 }
