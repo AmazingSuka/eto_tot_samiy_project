@@ -1,0 +1,10 @@
+C:\Users\dulck\source\repos\eto_tot_samiy_project\ShopNetwork\ShopNetwork\obj\Debug\ShopNetwork.csprojAssemblyReference.cache
+C:\Users\dulck\source\repos\eto_tot_samiy_project\ShopNetwork\ShopNetwork\obj\Debug\ShopNetwork.Form1.resources
+C:\Users\dulck\source\repos\eto_tot_samiy_project\ShopNetwork\ShopNetwork\obj\Debug\ShopNetwork.Properties.Resources.resources
+C:\Users\dulck\source\repos\eto_tot_samiy_project\ShopNetwork\ShopNetwork\obj\Debug\ShopNetwork.csproj.GenerateResource.cache
+C:\Users\dulck\source\repos\eto_tot_samiy_project\ShopNetwork\ShopNetwork\obj\Debug\ShopNetwork.csproj.CoreCompileInputs.cache
+C:\Users\dulck\source\repos\eto_tot_samiy_project\ShopNetwork\ShopNetwork\bin\Debug\ShopNetwork.exe.config
+C:\Users\dulck\source\repos\eto_tot_samiy_project\ShopNetwork\ShopNetwork\bin\Debug\ShopNetwork.exe
+C:\Users\dulck\source\repos\eto_tot_samiy_project\ShopNetwork\ShopNetwork\bin\Debug\ShopNetwork.pdb
+C:\Users\dulck\source\repos\eto_tot_samiy_project\ShopNetwork\ShopNetwork\obj\Debug\ShopNetwork.exe
+C:\Users\dulck\source\repos\eto_tot_samiy_project\ShopNetwork\ShopNetwork\obj\Debug\ShopNetwork.pdb
