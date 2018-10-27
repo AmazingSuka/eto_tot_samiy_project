@@ -19,7 +19,8 @@ namespace ShopNetwork
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            SqlAdapter adapter = new SqlAdapter();
+            
         }
     }
 }
