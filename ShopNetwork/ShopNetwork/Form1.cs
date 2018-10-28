@@ -41,28 +41,33 @@ namespace ShopNetwork
         // Добавляет в базу новый заказ
         private void OrderGrid_Add()
         {
-            // adapter.InsertData("order", "{@arg1,@arg2,@arg3,@arg4,@arg5,@arg6}", {ТекстБоксы и Комбобоксы с данными})
+            adapter.TableAdapter = new Order();
+            // adapter.InsertData({ТекстБоксы и Комбобоксы с данными});
         }
 
         private void OrderGrid_Remove()
         {
-            // adapter.RemoveData("order", {Комбобокс с значением});
+            adapter.TableAdapter = new Order();
+            // adapter.RemoveData({Комбобокс с значением});
         }
 
-        private void ModelGrid_Fill()
+        private void TentGrid_Fill()
         {
             adapter.sqlCommand = new SqlCommand("SELECT model, tentType, numberOfSeats, color, basePrice FROM boat", adapter.sqlConnection);
             // adapter.DataGrid_Fill(adapter.sqlCommand, modelDataGrid, 5);
         }
 
-        private void ModelGrid_Add()
+        private void TentGrid_Add()
         {
-            // adapter.InsertData("boat", "@arg1,@arg2,@arg3,@arg4,@arg5", {Текстбоксы и комбобоксы с данными});
+            adapter.TableAdapter = new Tent();
+            // adapter.InsertData({Текстбоксы и комбобоксы с данными});
         }
 
-        private void ModelGrid_Remove()
+        private void TentGrid_Remove()
         {
-            // adapter.RemoveData("boat", {Комбобокс с значением});
+            adapter.TableAdapter = new Tent();
+            // adapter.RemoveData({Комбобокс с значением});
         }
+        
     }
 }

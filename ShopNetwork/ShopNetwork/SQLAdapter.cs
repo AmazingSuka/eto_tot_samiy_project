@@ -13,6 +13,7 @@ namespace ShopNetwork
         public SqlConnection sqlConnection;
         public SqlCommand sqlCommand;
         public SqlDataReader sqlDataReader;
+        public ITableAdapter TableAdapter;         
 
         public SqlAdapter()
         {
@@ -49,16 +50,15 @@ namespace ShopNetwork
         }
 
         // Вставка данных в таблицу в БД
-        internal void InsertData(string table, string arguments, params string[] value)
+        internal void InsertData(params string[] value)
         {
             try
             {
                 sqlConnection.Open();
-                sqlCommand = new SqlCommand(String.Format("INSERT INTO {0} VALUES ({1})", table, arguments), sqlConnection);
-                string[] arg = arguments.Split(',');
-                for (int i = 0; i < arg.Length; i++)
+                sqlCommand = TableAdapter.Insert(sqlConnection);
+                for (int i = 0; i < TableAdapter.InsertParams; i++)
                 {
-                    sqlCommand.Parameters.Add(new SqlParameter(arg[i], value[i]));
+                    sqlCommand.Parameters.Add(new SqlParameter(String.Format("@param{0}", i + 1), value[i]));
                 }
                 sqlCommand.ExecuteNonQuery();
                 CongratulationMessage();
@@ -75,13 +75,14 @@ namespace ShopNetwork
         }
 
         // Удаление данных из таблицы в БД
-        internal void RemoveData(string table, string value)
+        internal void RemoveData(string value)
         {
             try
             {
                 sqlConnection.Open();
-                sqlCommand = new SqlCommand(String.Format("DELETE FROM {0} WHERE ID = @1", table), sqlConnection);
-                sqlCommand.Parameters.Add(new SqlParameter("@1", value));
+                sqlCommand = TableAdapter.Delete(sqlConnection);
+                sqlCommand.Connection = sqlConnection;
+                sqlCommand.Parameters.Add(new SqlParameter("@param1", value));
                 sqlCommand.ExecuteNonQuery();
                 CongratulationMessage();
             }
@@ -97,9 +98,29 @@ namespace ShopNetwork
         }
 
         // Редактирование данных 
-        internal void EditData(string table)
+        internal void EditData(string[] values)
         {
-            sqlCommand = new SqlCommand(String.Format("UPDATE {0} SET ", table), sqlConnection);
+            try
+            {
+                sqlConnection.Open();
+                sqlCommand = TableAdapter.Edit(sqlConnection);
+                for (int i = 0; i < TableAdapter.InsertParams + 1; i++)
+                {
+                    sqlCommand.Parameters.Add(new SqlParameter(String.Format("@param{0}", i + 1), values[i]));
+                }
+                sqlCommand.ExecuteNonQuery();
+                CongratulationMessage();
+            }
+            catch (Exception)
+            {
+                ErrorMessage();
+                throw; // убрать перед показом
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+            
         }
 
         private void ErrorMessage() => MessageBox.Show("При работе с данными произошла ошибка", "Ошибка данных", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
