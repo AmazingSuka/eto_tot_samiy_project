@@ -17,5 +17,9 @@ namespace ShopNetwork
                 "WHERE partnerID = @param4", sqlConnection);
 
         public SqlCommand Insert(SqlConnection sqlConnection) => new SqlCommand("INSERT INTO Partner VALUES(@param1, @param2, @param3)", sqlConnection);
+
+        public SqlCommand Select(SqlConnection sqlConnection) => new SqlCommand("SELECT " +
+            "p.name, p.adress, p.city FROM Partner as p WHERE p.id = @param1");
+        
     }
 }

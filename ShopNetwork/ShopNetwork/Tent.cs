@@ -21,5 +21,9 @@ namespace ShopNetwork
 
         public SqlCommand Insert(SqlConnection sqlConnection) => new SqlCommand("INSERT INTO Tent " +
                 "VALUES(@param1, @param2, @param3, @param4, @param5)", sqlConnection);
+
+        public SqlCommand Select(SqlConnection sqlConnection) => new SqlCommand("SELECT t.model," +
+            "t.tentType, t.numberOfSeats, t.color, t.basePrice, FROM Tent as t WHERE t.id = @param1", sqlConnection);
+        
     }
 }

@@ -45,6 +45,30 @@ namespace ShopNetwork
             }
             finally
             {
+                sqlDataReader.Close();
+                sqlConnection.Close();
+            }
+        }
+
+        internal void ComboBox_Fill(SqlCommand sqlCommand, ComboBox comboBox)
+        {
+            try
+            {
+                sqlConnection.Open();
+                sqlDataReader = sqlCommand.ExecuteReader();
+                while (sqlDataReader.Read())
+                {
+                    comboBox.Items.Add(sqlDataReader.GetValue(0));
+                }
+            }
+            catch (Exception)
+            {
+                ErrorMessage();
+                throw;
+            }
+            finally
+            {
+                sqlDataReader.Close();
                 sqlConnection.Close();
             }
         }
@@ -96,7 +120,7 @@ namespace ShopNetwork
                 sqlConnection.Close();
             }           
         }
-
+ 
         // Редактирование данных 
         internal void EditData(string[] values)
         {
@@ -121,6 +145,30 @@ namespace ShopNetwork
                 sqlConnection.Close();
             }
             
+        }
+
+        /* Заполняет ТекстБоксы на форме редактирования
+                                     Комбобокс с выбором ID и Текстбоксы*/
+        internal void SelectDataForEdit(string id, TextBox[] textBoxes)
+        {
+            try
+            {
+                sqlConnection.Open();
+                sqlCommand = TableAdapter.Select(sqlConnection);
+                sqlCommand.Parameters.Add(new SqlParameter("@param1", id));
+                sqlDataReader = sqlCommand.ExecuteReader();
+                sqlDataReader.GetValues(textBoxes);
+            }
+            catch (Exception)
+            {
+                ErrorMessage();
+                throw;
+            }
+            finally
+            {
+                sqlDataReader.Close();
+                sqlConnection.Close();
+            }
         }
 
         private void ErrorMessage() => MessageBox.Show("При работе с данными произошла ошибка", "Ошибка данных", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);

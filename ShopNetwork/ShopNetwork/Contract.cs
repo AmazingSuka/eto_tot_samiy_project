@@ -18,6 +18,9 @@ namespace ShopNetwork
                 "WHERE contractID = @param5", sqlConnection);
 
         public SqlCommand Insert(SqlConnection sqlConnection) => new SqlCommand("INSERT INTO Contract VALUES(@param1, @param2, @param3, @param4)", sqlConnection);
+
+        public SqlCommand Select(SqlConnection sqlConnection) => new SqlCommand("SELECT date, depositPayed, order_id, contractTotalPrice " +
+            "WHERE id = @param1", sqlConnection);
         
     }
 }

@@ -21,5 +21,9 @@ namespace ShopNetwork
 
         public SqlCommand Insert(SqlConnection sqlConnection) => new SqlCommand("INSERT INTO Client VALUES(@param1, @param2, @param3, " +
             "@param4, @param5, @param6, @param7, @param8, @param9, @param10)", sqlConnection);
+
+        public SqlCommand Select(SqlConnection sqlConnection) => new SqlCommand("SELECT firstName, familyName, dateofBitrh, " +
+            "organisationName, adress, city, email, phone, IDNumber, IDDocumentName WHERE id = @param1", sqlConnection);
+        
     }
 }

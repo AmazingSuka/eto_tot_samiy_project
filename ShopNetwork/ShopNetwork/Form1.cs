@@ -27,16 +27,18 @@ namespace ShopNetwork
             
         }
 
-        // Заполняет DataGrid окна OrderList | Запрос доделаю
+        // Заполняет DataGrid окна OrderList                           ------
         private void OrderGrid_FillWithCondition(string whereSqlCondition = "")
         {
-            adapter.sqlCommand = new SqlCommand(String.Format("SELECT {*} FROM {ORDER_TABLE} as o " +
-                                                "JOIN {SALESPERSON_TABLE} as s ON s.id = o.salespersonID " +
-                                                "JOIN {CUSTOMER_TABLE} as c ON c.id = o.customerID" +
-                                                "JOIN {BOAT_TABLE} as b ON b.id = o.boatID " +
+            adapter.sqlCommand = new SqlCommand(String.Format("SELECT o.id, o.date, c.firstName, " +
+                                                "c.familyName, ct.date, ct.depositPayed, ct.contractTotalPrice, m.name" +
+                                                "FROM Order as o " +
+                                                "JOIN Manager as m ON m.id = o.salespersonID " +
+                                                "JOIN Client as c ON c.id = o.customerID " +
+                                                "JOIN Contract as ct ON o.id = ct.orderID " +
                                                 "{0}", whereSqlCondition), adapter.sqlConnection);
-            //adapter.DataGrid_Fill(adapter.sqlCommand, orderDataGrid, 4);
-        }
+            //adapter.DataGrid_Fill(adapter.sqlCommand, orderDataGrid, 8);
+        }         
 
         // Добавляет в базу новый заказ
         private void OrderGrid_Add()
@@ -50,6 +52,8 @@ namespace ShopNetwork
             adapter.TableAdapter = new Order();
             // adapter.RemoveData({Комбобокс с значением});
         }
+
+        // -------------------------------------------------------------------------------------------------------
 
         private void TentGrid_Fill()
         {
@@ -69,5 +73,56 @@ namespace ShopNetwork
             // adapter.RemoveData({Комбобокс с значением});
         }
         
+        // ------------------------------------------------------------------------------------------------------
+        
+            /* Функции редактирования, отправляют данные в базу
+           с текстбоксов и комбобокса, которые так же используются в SelectDataForEdit*/
+        private void Accessories_Edit()
+        {
+            adapter.TableAdapter = new Accessories();
+            // adapter.EditData({комбобоксы})
+        }
+        
+        private void Client_Edit()
+        {
+            adapter.TableAdapter = new Client();
+            // adapter.EditData({Комбобоксы});
+        }
+
+        private void Order_Edit()
+        {
+            adapter.TableAdapter = new Order();
+            // adapter.EditData({комбобоксы});
+        }
+
+        private void Contract_Edit()
+        {
+            adapter.TableAdapter = new Contract();
+            // adapter.EditData({комбобоксы})
+        }
+
+        private void Manager_Edit()
+        {
+            adapter.TableAdapter = new Manager();
+            // adapter.EditData({комбобоксы})
+        }
+
+        private void Partner_Edit()
+        {
+            adapter.TableAdapter = new Partner();
+            // adapter.EditData({комбобоксы})
+        }
+
+        private void Tent_Edit()
+        {
+            adapter.TableAdapter = new Tent();
+            // adapter.EditData({комбобоксы})
+        }
+
+        private void TentAcessories_Edit()
+        {
+            adapter.TableAdapter = new TentAcessories();
+            // adapter.EditData({комбобоксы});
+        }
     }
 }

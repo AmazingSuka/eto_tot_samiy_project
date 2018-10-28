@@ -10,6 +10,7 @@ namespace ShopNetwork
     interface ITableAdapter
     {
         int InsertParams { get; }
+        SqlCommand Select(SqlConnection sqlConnection);
         SqlCommand Insert(SqlConnection sqlConnection);
         SqlCommand Edit(SqlConnection sqlConnection);
         SqlCommand Delete(SqlConnection sqlConection);
