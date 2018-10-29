@@ -43,13 +43,13 @@ namespace ShopNetwork
         // Добавляет в базу новый заказ
         private void OrderGrid_Add()
         {
-            adapter.TableAdapter = new Order();
+            adapter.TableAdapter = new Orders();
             // adapter.InsertData({ТекстБоксы и Комбобоксы с данными});
         }
 
         private void OrderGrid_Remove()
         {
-            adapter.TableAdapter = new Order();
+            adapter.TableAdapter = new Orders();
             // adapter.RemoveData({Комбобокс с значением});
         }
 
