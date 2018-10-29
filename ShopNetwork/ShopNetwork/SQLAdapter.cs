@@ -122,7 +122,7 @@ namespace ShopNetwork
         }
  
         // Редактирование данных 
-        internal void EditData(string[] values)
+        internal void EditData(params string[] value)
         {
             try
             {
@@ -130,7 +130,7 @@ namespace ShopNetwork
                 sqlCommand = TableAdapter.Edit(sqlConnection);
                 for (int i = 0; i < TableAdapter.InsertParams + 1; i++)
                 {
-                    sqlCommand.Parameters.Add(new SqlParameter(String.Format("@param{0}", i + 1), values[i]));
+                    sqlCommand.Parameters.Add(new SqlParameter(String.Format("@param{0}", i + 1), value[i]));
                 }
                 sqlCommand.ExecuteNonQuery();
                 CongratulationMessage();
@@ -171,8 +171,10 @@ namespace ShopNetwork
             }
         }
 
-        private void ErrorMessage() => MessageBox.Show("При работе с данными произошла ошибка", "Ошибка данных", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+        private void ErrorMessage() => MessageBox.Show("При работе с данными произошла ошибка." +
+                                                       "\nПоля с (*) должны быть заполнены.", "Ошибка данных", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
 
-        private void CongratulationMessage() => MessageBox.Show("Команда успешно выполена", "Успешное выполнение", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+        private void CongratulationMessage() => MessageBox.Show("Команда успешно выполена", 
+            "Успешное выполнение", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
     }
 }

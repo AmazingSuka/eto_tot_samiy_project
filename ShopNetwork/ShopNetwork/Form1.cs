@@ -72,57 +72,28 @@ namespace ShopNetwork
             adapter.TableAdapter = new Tent();
             // adapter.RemoveData({Комбобокс с значением});
         }
-        
+
         // ------------------------------------------------------------------------------------------------------
-        
-            /* Функции редактирования, отправляют данные в базу
-           с текстбоксов и комбобокса, которые так же используются в SelectDataForEdit*/
-        private void Accessories_Edit()
+
+        /* Функции редактирования, отправляют данные в базу
+       с текстбоксов и комбобокса, которые так же используются в SelectDataForEdit*/
+
+        private void EditData(ITableAdapter tableAdapter, string[] value)
         {
-            adapter.TableAdapter = new Accessories();
-            // adapter.EditData({комбобоксы})
-        }
-        
-        private void Client_Edit()
-        {
-            adapter.TableAdapter = new Client();
-            // adapter.EditData({Комбобоксы});
+            adapter.TableAdapter = tableAdapter;
+            adapter.EditData(value);
         }
 
-        private void Order_Edit()
+        private void InsertData(ITableAdapter tableAdapter, string[] value)
         {
-            adapter.TableAdapter = new Order();
-            // adapter.EditData({комбобоксы});
+            adapter.TableAdapter = tableAdapter;
+            adapter.InsertData(value);
         }
 
-        private void Contract_Edit()
+        private void RemoveData(ITableAdapter tableAdapter, string id)
         {
-            adapter.TableAdapter = new Contract();
-            // adapter.EditData({комбобоксы})
-        }
-
-        private void Manager_Edit()
-        {
-            adapter.TableAdapter = new Manager();
-            // adapter.EditData({комбобоксы})
-        }
-
-        private void Partner_Edit()
-        {
-            adapter.TableAdapter = new Partner();
-            // adapter.EditData({комбобоксы})
-        }
-
-        private void Tent_Edit()
-        {
-            adapter.TableAdapter = new Tent();
-            // adapter.EditData({комбобоксы})
-        }
-
-        private void TentAcessories_Edit()
-        {
-            adapter.TableAdapter = new TentAcessories();
-            // adapter.EditData({комбобоксы});
+            adapter.TableAdapter = tableAdapter;
+            adapter.RemoveData(id);
         }
     }
 }
