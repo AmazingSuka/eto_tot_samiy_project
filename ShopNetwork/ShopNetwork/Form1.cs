@@ -32,7 +32,7 @@ namespace ShopNetwork
         {
             adapter.sqlCommand = new SqlCommand(String.Format("SELECT o.id, o.date, c.firstName, " +
                                                 "c.familyName, ct.date, ct.depositPayed, ct.contractTotalPrice, m.name" +
-                                                "FROM Order as o " +
+                                                "FROM Orders as o " +
                                                 "JOIN Manager as m ON m.id = o.salespersonID " +
                                                 "JOIN Client as c ON c.id = o.customerID " +
                                                 "JOIN Contract as ct ON o.id = ct.orderID " +
@@ -43,13 +43,11 @@ namespace ShopNetwork
         // Добавляет в базу новый заказ
         private void OrderGrid_Add()
         {
-            adapter.TableAdapter = new Orders();
             // adapter.InsertData({ТекстБоксы и Комбобоксы с данными});
         }
 
         private void OrderGrid_Remove()
         {
-            adapter.TableAdapter = new Orders();
             // adapter.RemoveData({Комбобокс с значением});
         }
 
@@ -63,13 +61,11 @@ namespace ShopNetwork
 
         private void TentGrid_Add()
         {
-            adapter.TableAdapter = new Tent();
             // adapter.InsertData({Текстбоксы и комбобоксы с данными});
         }
 
         private void TentGrid_Remove()
         {
-            adapter.TableAdapter = new Tent();
             // adapter.RemoveData({Комбобокс с значением});
         }
 
@@ -78,37 +74,22 @@ namespace ShopNetwork
         /* Функции редактирования, отправляют данные в базу
        с текстбоксов и комбобокса, которые так же используются в SelectDataForEdit*/
 
-        private void EditData(ITableAdapter tableAdapter, string[] value)
-        {
-            adapter.TableAdapter = tableAdapter;
-            adapter.EditData(value);
-        }
+        //private void EditData(ITableAdapter tableAdapter, string[] value)
+        //{
+        //    adapter.TableAdapter = tableAdapter;
+        //    adapter.EditData(value);
+        //}
 
-        private void InsertData(ITableAdapter tableAdapter, string[] value)
-        {
-            adapter.TableAdapter = tableAdapter;
-            adapter.InsertData(value);
-        }
+        //private void InsertData(ITableAdapter tableAdapter, string[] value)
+        //{
+        //    adapter.TableAdapter = tableAdapter;
+        //    adapter.InsertData(value);
+        //}
 
-        private void RemoveData(ITableAdapter tableAdapter, string id)
-        {
-            adapter.TableAdapter = tableAdapter;
-            adapter.RemoveData(id);
-        }
-
-        private void button7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            pictureBox1.BringToFront();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            userControl11.BringToFront();
-        }
+        //private void RemoveData(ITableAdapter tableAdapter, string id)
+        //{
+        //    adapter.TableAdapter = tableAdapter;
+        //    adapter.RemoveData(id);
+        //}
     }
 }

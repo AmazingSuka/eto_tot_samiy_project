@@ -12,12 +12,11 @@ namespace ShopNetwork
     {
         public SqlConnection sqlConnection;
         public SqlCommand sqlCommand;
-        public SqlDataReader sqlDataReader;
-        public ITableAdapter TableAdapter;         
+        public SqlDataReader sqlDataReader;     
 
         public SqlAdapter()
         {
-            //sqlConnection = new SqlConnection(ShopNetwork.Properties.Settings.Default.ConnectionString); Строка подключения
+            sqlConnection = new SqlConnection(@"Data Source=DESKTOP-9JL7RPV;Initial Catalog=tentShop;Integrated Security=True");
         }
 
         // Добавление информации в DataGrid
@@ -74,7 +73,7 @@ namespace ShopNetwork
         }
 
         // Вставка данных в таблицу в БД
-        internal void InsertData(params string[] value)
+        internal void InsertData(ITableAdapter TableAdapter, params string[] value)
         {
             try
             {
@@ -99,7 +98,7 @@ namespace ShopNetwork
         }
 
         // Удаление данных из таблицы в БД
-        internal void RemoveData(string value)
+        internal void RemoveData(ITableAdapter TableAdapter, string value)
         {
             try
             {
@@ -122,7 +121,7 @@ namespace ShopNetwork
         }
  
         // Редактирование данных 
-        internal void EditData(params string[] value)
+        internal void EditData(ITableAdapter TableAdapter, params string[] value)
         {
             try
             {
@@ -149,7 +148,7 @@ namespace ShopNetwork
 
         /* Заполняет ТекстБоксы на форме редактирования
                                      Комбобокс с выбором ID и Текстбоксы*/
-        internal void SelectDataForEdit(string id, TextBox[] textBoxes)
+        internal void SelectDataForEdit(ITableAdapter TableAdapter, string id, TextBox[] textBoxes)
         {
             try
             {
