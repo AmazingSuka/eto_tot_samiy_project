@@ -95,5 +95,20 @@ namespace ShopNetwork
             adapter.TableAdapter = tableAdapter;
             adapter.RemoveData(id);
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            pictureBox1.BringToFront();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            userControl11.BringToFront();
+        }
     }
 }
